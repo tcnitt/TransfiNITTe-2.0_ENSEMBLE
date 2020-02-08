@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<nav class="navbar-nav" >
+    <ul style="background-color: rgb(6, 6, 99);">
+        <li><a href="javascript:show_graphs('CHEM')">CHEM</a></li>
+        <li><a href="javascript:show_graphs('CIVIL')">CIVIL</a></li>
+        <li><a href="javascript:show_graphs('CSE')">CSE</a></li>  
+        <li><a href="javascript:show_graphs('ECE')">ECE</a></li>  
+        <li><a href="javascript:show_graphs('EEE')">EEE</a></li>
+        <li><a href="javascript:show_graphs('ICE')">ICE</a></li>
+        <li><a href="javascript:show_graphs('MECH')">MECH</a></li>
+        <li><a href="javascript:show_graphs('META')">META</a></li>
+        <li><a href="javascript:show_graphs('PROD')">PROD</a></li>
+        <li><a href="javascript:show_graphs('CHEM')">CHEM</a></li>
+        <li style="background-color: red;"><a href="{% url 'stats:compare-departments' %}">COMPARE</a></li>
+  </ul>
+  {% include 'stats/cse.html' %}
+</nav>
+<script>
+    function show_graphs(dept){
+
+    }
+</script>
+{% endblock %}

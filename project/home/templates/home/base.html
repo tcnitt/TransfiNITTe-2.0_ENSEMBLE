@@ -15,26 +15,29 @@
     <title>{% block title %}Transforming NIT-T{% endblock %}</title>
 </head>
 <body>
-    <div class="jumbotron text-center" style="background:black;color: white;margin-bottom: 0px;">
+    <div class="jumbotron text-center" style="background:rgb(0, 0, 0);color: white;margin-bottom: 0px;">
         <a href="{% url 'home:home-page' %}"><img height="150px" width="150px" src='{% static "home/nitt-logo.png" %}' alt="logo"></a>
         <h1 style="display: inline-block;"><b>Innovation at NIT-T </b></h1>
-        <p>Transforming NIT-T's Innovation landscape</p> 
-        
+        <p>Transforming NIT-T's Innovation landscape</p>         
 </div>
 <nav class="navbar-nav">
     <ul>
         <li><a href="{% url 'home:home-page' %}">Home</a></li>
         <li><a href="{% url 'projects:list-projects' %}">Projects</a></li>
-        <li><a href="#">Department <br> stats</a></li>
+        <li><a href="{% url 'stats:stats-home' %}">Department <br> stats</a></li>
         <li><a href="#">Where do <br> we stand?</a></li>
         <li><a href="{% url 'home:about-us' %}">About Us</a></li>
         <li><a href="#">Resources</a></li>
         <li><a href="{% url 'home:terms-and-conditions' %}">Terms & <br> Conditions</a></li>
         <li><a href="{% url 'faq:list-faqs' %}">FAQ</a></li>
         <div style="display: inline;">
+            {% if user.is_authenticated %}
+            <button class="btn btn-info"><a href="{% url 'users:profile' id=user.id %}">PROFILE</a></button>
+            <button class="btn btn-info"><a href="{% url 'logout' %}">LOGOUT</a></button>
+            {% else %}
             <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button>
             <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button>
-            <button class="btn btn-info"><a href="{% url 'users:profile' id=1 %}">PROFILE</a></button>
+            {% endif %}
         </div>
        <!-- <li><a href="/research/">Research</a></li> -->
     </ul>

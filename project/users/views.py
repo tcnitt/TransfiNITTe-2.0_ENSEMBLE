@@ -1,13 +1,15 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import UserForm
 from .models import user 
-
+from django.contrib.auth.hashers import make_password
 # Create your views here.
 def RegisterUserView(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            form.save()
+            data = form.save(commit=False)
+            data.password = make_password(form.cleaned_data["password"])
+            data.save()
             return redirect('home:home-page')
     else:
         form = UserForm()
