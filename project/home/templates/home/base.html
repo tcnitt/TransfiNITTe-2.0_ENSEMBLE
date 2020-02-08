@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'home/base.css' %}">
+    <link rel="stylesheet" href="{% static 'home/aboutus.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>{% block title %}Transforming NIT-T{% endblock %}</title>
@@ -45,11 +46,131 @@
 <center>
     {% block content %}
     <div class="jumbotron" style="padding:200px">
+        <b>
         Though our institute is among the best, we lack in a few fields, specially innovation.
         Though we have amazing placements, we really have little to boast about our work.
         This platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
+        </b>
     </div>
+    <div class="container-fluid bg-grey">
+        <div class="row">
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-globe logo slideanim"></span>
+          </div>
+          <div class="col-sm-8">
+            <h2>Our Values</h2><br>
+            <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
+            <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Container (Services Section) -->
+      <div id="services" class="container-fluid text-center">
+        <h2>FEATURES</h2>
+        <h4>What we offer</h4>
+        <br>
+        <div class="row slideanim">
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-off logo-small"></span>
+            <h4>POWER</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+          </div>
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-heart logo-small"></span>
+            <h4>LOVE</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+          </div>
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-lock logo-small"></span>
+            <h4>JOB DONE</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+          </div>
+        </div>
+        <br><br>
+        <div class="row slideanim">
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-leaf logo-small"></span>
+            <h4>GREEN</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+          </div>
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-certificate logo-small"></span>
+            <h4>CERTIFIED</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+          </div>
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-wrench logo-small"></span>
+            <h4 style="color:#303030;">HARD WORK</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+          </div>
+        </div>
+      </div>
+      <!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid bg-grey">
+    <h2 class="text-center">CONTACT</h2>
+    <div class="row">
+      <div class="col-sm-5">
+        <p><span class="glyphicon glyphicon-map-marker"></span>NIT-Tiruchirappalli,620015</p>
+        <p><span class="glyphicon glyphicon-phone"></span> +91 9677135980</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> innovatenitt@nitt.edu</p>
+      </div>
+      <div class="col-sm-7 slideanim">
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+          </div>
+        </div>
+        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <button class="btn btn-default pull-right" type="submit">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     {% endblock %}
 </center>
 </body>
+<script>
+    $(document).ready(function(){
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+    
+          // Store hash
+          var hash = this.hash;
+    
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function(){
+       
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+      
+      $(window).scroll(function() {
+        $(".slideanim").each(function(){
+          var pos = $(this).offset().top;
+    
+          var winTop = $(window).scrollTop();
+            if (pos < winTop + 600) {
+              $(this).addClass("slide");
+            }
+        });
+      });
+    })
+    </script>
 </html>
