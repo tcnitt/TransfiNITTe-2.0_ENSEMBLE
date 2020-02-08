@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'projects',
     'faq',
     'stats',
-    # 'resources',
+    'help',
 ]
 
 MIDDLEWARE = [

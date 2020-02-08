@@ -27,7 +27,7 @@
         <li><a href="{% url 'stats:stats-home' %}">Department <br> stats</a></li>
         <li><a href="#">Where do <br> we stand?</a></li>
         <li><a href="{% url 'home:about-us' %}">About Us</a></li>
-        <li><a href="#">Resources</a></li>
+        <li><a href="{% url 'help:help-list' %}">Resources</a></li>
         <li><a href="{% url 'home:terms-and-conditions' %}">Terms & <br> Conditions</a></li>
         <li><a href="{% url 'faq:list-faqs' %}">FAQ</a></li>
         <div style="display: inline;">
@@ -47,9 +47,7 @@
     <div class="jumbotron" style="padding:200px">
         Though our institute is among the best, we lack in a few fields, specially innovation.
         Though we have amazing placements, we really have little to boast about our work.
-        
         This platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
-        
     </div>
     {% endblock %}
 </center>

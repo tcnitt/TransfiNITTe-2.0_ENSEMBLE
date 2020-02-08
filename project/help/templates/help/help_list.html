@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+<div class="container text-center" id="resource">
+    <h1><b>Resources</b></h1>
+    {% if object_list is None or object_list.count == 0  %}
+            <p>Coming soon...</p>
+    {% endif %}
+    {% for resource in object_list %}
+    {% if forloop.first %}<div class="row">{% endif %}
+    <div style="border-style: solid;border-radius: 5%;border-color: rgb(0,0,0,0.1);" class="col-xs-6 col-sm-6 col-md-4 ">
+            <img height="100px" width="100px" src="{{ resource.image.url }}" alt="{{ resource.name }}">
+            <h3><a target="_blank" href="{{ resource.link }}"><b>{{ resource.title }}</b></a></h3>
+            <p>{{ resource.description }}</p>
+            <p>By : <span class="label label-success">{{ resource.author }}</span></p>
+   </div>
+    {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+{% endfor %}
+</div>
+{% endblock %}
