@@ -1,0 +1,15 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<h1 style="display: inline-block;"><b>FAQs</b></h1>
+<!-- <button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:add-project'%}"><span class="glyphicon glyphicon-plus"></span>POST NEW PROJECT</a></button> -->
+<ul>
+{% for faq in object_list %}
+    <div style="list-style: none;padding: 10px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;width: 1000px;">
+        <h3>{{ faq.question }}</h3>
+        <p>{{ faq.answer }}</p>
+    </div>
+{% endfor %}
+
+
+{% endblock %}

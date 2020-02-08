@@ -2,6 +2,14 @@ from django.db import models
 from users.models import user
 # Create your models here.
 
+BODIES = (
+    ('Delta','Delta'),
+    ('Spider','Spider'),
+    ('DataByte','DataByte'),
+    ('CSE','Computer Science & Engineering dept'),
+)
+
+DEFAULT_BODY = 'CSE'
 
 class projects(models.Model):
     title = models.CharField(max_length=300)
@@ -11,7 +19,9 @@ class projects(models.Model):
     phone = models.CharField(max_length=10,help_text='Enter 10-digit phone no.')
     email = models.EmailField()
     prerequisites = models.TextField(help_text='Enter pre-requisites as comma separated values')
+    body = models.CharField(choices=BODIES,max_length=100,default=DEFAULT_BODY)
 
+    
     class Meta:
         verbose_name = 'Projects'
         verbose_name_plural = 'Projects'

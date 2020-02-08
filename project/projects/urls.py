@@ -8,4 +8,5 @@ app_name = 'projects'
 urlpatterns = [
     path('',ListProjectsView.as_view(),name='list-projects'),
     path('add-project/',AddNewProjectView,name='add-project'),
+    path('search/',SearchResultsView.as_view(),name='search-projects'),
 ]
