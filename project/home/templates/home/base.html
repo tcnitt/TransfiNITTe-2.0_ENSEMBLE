@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'home/base.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>{% block title %}Transforming NIT-T{% endblock %}</title>
+</head>
+<body>
+    <div class="jumbotron text-center" style="background:black;color: white;margin-bottom: 0px;">
+        <a href="{% url 'home:home-page' %}"><img height="150px" width="150px" src='{% static "home/nitt-logo.png" %}' alt="logo"></a>
+        <h1 style="display: inline-block;"><b>Innovation at NIT-T </b></h1>
+        <p>Transforming NIT-T's Innovation landscape</p> 
+        
+</div>
+<nav class="navbar-nav">
+    <ul>
+        <li><a href="{% url 'home:home-page' %}">Home</a></li>
+        <li><a href="{% url 'projects:list-projects' %}">Projects</a></li>
+        <li><a href="/projects/">Department <br> stats</a></li>
+        <li><a href="/events/">Where do <br> we stand?</a></li>
+        <li><a href="/achievers/">About Us</a></li>
+        <li><a href="/blogs/">Resources</a></li>
+        <li><a href="/blogs/">Terms & <br> Conditions</a></li>
+        <li><a href="/blogs/">FAQ</a></li>
+        {% if user.is_authenticated is True %}
+        <button class="btn btn-info"><a href="">LOGIN</a></button>
+        <button class="btn btn-info"><a href="">REGISTER</a></button>
+        {% endif %}
+        <!-- <li><a href="/research/">Research</a></li> -->
+    </ul>
+</nav>
+<center>
+    {% block content %}
+    <div class="jumbotron">
+        Though our institute is among the best, we lack in a few fields, specially innovation.
+    Though we have amazing placements, we really have little to boast about our work.
+    
+    This platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
+    </div>
+    {% endblock %}
+</center>
+</body>
+</html>

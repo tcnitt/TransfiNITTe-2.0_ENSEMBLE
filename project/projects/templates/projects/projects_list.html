@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<h1><b>Projects</b></h1>
+<ul>
+{% for project in object_list %}
+    <div style="list-style: none;padding: 10px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;width: 1000px;" class="card">
+        <li><b>Title : </b>{{ project.title }}</li>
+        <li><b>Posted by : </b>{{ project.author }}</li>
+        <li><b>Domain(s) :</b> 
+        {% for domain in project.domains_list %}
+            <span class="label label-success">{{ domain }}</span>
+        {% endfor %}
+        </li>
+        <li><b>Pre-requisites(s) :</b> 
+            {% for prerequisites in project.prerequisites_list %}
+                <span class="label label-warning">{{ prerequisites }}</span>
+            {% endfor %}
+            </li>
+        <li><b>Phone : </b>{{ project.phone }}</li>
+        <li><b>E-mail : </b>{{ project.email }}</li>
+        <button class="btn btn-success">I WANT <br>TO WORK</button>
+        <button class="btn btn-danger">I WANT <br>TO FUND</button>
+
+    </div>
+
+
+{% empty %}
+    <li>No projects yet.</li>
+{% endfor %}
+</ul>
+{% endblock %}

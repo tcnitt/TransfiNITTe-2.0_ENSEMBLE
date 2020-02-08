@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<h1><b>Add project</b></h1>
+<ul>
+
+<form style="width: 500px;text-align: left;" action="{% url 'projects:add-project' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
