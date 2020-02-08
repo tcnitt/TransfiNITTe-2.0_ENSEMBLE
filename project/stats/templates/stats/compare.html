@@ -5,7 +5,7 @@
 <form id="form1" class="form" action="">
     <div class="form-group" style="display: inline;">
         <label for="dept1">DEPT 1</label>
-        <select name="dept1">
+        <select id="dept1" name="dept1">
             <option>CHEM</a></option>
             <option>CIVIL</a></option>
             <option>CSE</a></option>  
@@ -20,9 +20,9 @@
     </div>
     <div class="form-group" style="display: inline;">
     <label for="dep2">DEPT 2</label>
-    <select name="dep2">
-        <option>CHEM</a></option>
-        <option>CIVIL</a></option>
+    <select id="dept2" name="dep2">
+        <option >CHEM</a></option>
+        <option selected>CIVIL</a></option>
         <option>CSE</a></option>  
         <option>ECE</a></option>  
         <option>EEE</a></option>
@@ -59,12 +59,14 @@ $(document).ready(function(){
     var trace1 = {
   x: [1, 2, 3, 4],
   y: [10, 15, 13, 17],
+  name : $("#dept1").val(),
   type: 'scatter'
 };
 
 var trace2 = {
   x: [1, 2, 3, 4],
   y: [16, 5, 11, 9],
+  name : $("#dept2").val(),
   type: 'scatter'
 };
 
@@ -100,10 +102,29 @@ var layout = {
   }
 };
 
+var layoutCitations = {
+title: {
+    text:'No. of citations over the years',
+    font: { family: 'Courier New, monospace',size: 24 },
+    xref: 'paper',x: 0.05,
+  },
+  xaxis: {
+    title: { text: 'Year',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18, color: '#7f7f7f' }},},
+  yaxis: {
+    title: {
+      text: 'No. of Citations',
+      font: {family: 'Courier New, monospace',size: 18,color: '#7f7f7f'}
+    }
+  }
+};
+
 var data = [trace1, trace2];
 
 Plotly.newPlot('num_of_papers', data,layout);
-Plotly.newPlot('num_of_citations', data,layout);
+Plotly.newPlot('num_of_citations', data,layoutCitations);
 Plotly.newPlot('acp', data,layout);
 Plotly.newPlot('icp', data,layout);
 });

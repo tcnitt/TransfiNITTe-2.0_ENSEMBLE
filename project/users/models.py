@@ -38,7 +38,7 @@ class user(AbstractUser):
     transcript_link = models.URLField(max_length=200,help_text='Link to Transcript')
     areas_of_interest = models.CharField(max_length=200,help_text='Areas of interest')
     photo = models.ImageField(upload_to=DEFAULT_USER_PHOTO,default=DEFAULT_USER_PHOTO)
-    projects = models.ManyToManyField(projects)
+    projects = models.ManyToManyField(projects,blank=True)
 
     REQUIRED_FIELDS = ['first_name','last_name','email','year','department','cgpa','github_link','linkedin_link','resume_link','transcript_link','areas_of_interest']
 

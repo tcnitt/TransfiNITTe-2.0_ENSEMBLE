@@ -12,14 +12,29 @@
         <li><a href="javascript:show_graphs('MECH')">MECH</a></li>
         <li><a href="javascript:show_graphs('META')">META</a></li>
         <li><a href="javascript:show_graphs('PROD')">PROD</a></li>
-        <li><a href="javascript:show_graphs('CHEM')">CHEM</a></li>
         <li style="background-color: red;"><a href="{% url 'stats:compare-departments' %}">COMPARE</a></li>
   </ul>
-  {% include 'stats/cse.html' %}
+  <div id="dept_charts" style="visibility: hidden;">
+    <h1 id="dept_name"></h1>
+    {% include 'stats/cse.html' %}
+  </div>
 </nav>
 <script>
-    function show_graphs(dept){
-
-    }
+$(document).ready(function(){
+});
+function show_graphs(dept){
+        $("#dept_charts").css("visibility","visible");
+        switch(dept){
+            case "CHEM" : $("#dept_name").text("Chemical Engineering dept"); break;
+            case "CIVIL" : $("#dept_name").text("Civil Engineering dept"); break;
+            case "CSE" : $("#dept_name").text("Computer Science Engineering dept"); break;
+            case "ECE" : $("#dept_name").text("Electronics and Communication Engineering dept"); break;
+            case "EEE" : $("#dept_name").text("Electrical and Electronics Engineering dept"); break;
+            case "ICE" : $("#dept_name").text("Instrumentation and Control Engineering dept"); break;
+            case "MECH" : $("#dept_name").text("Mechanical Engineering dept"); break;
+            case "META" : $("#dept_name").text("Metallurgical Engineering dept"); break;
+            case "PROD" : $("#dept_name").text("Production Engineering dept"); break;
+        }
+}
 </script>
 {% endblock %}
