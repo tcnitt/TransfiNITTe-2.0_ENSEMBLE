@@ -1,5 +1,6 @@
 from django.db import models
-from users.models import user
+
+
 # Create your models here.
 
 BODIES = (
@@ -16,6 +17,14 @@ BODIES = (
 
 DEFAULT_BODY = 'CSE'
 
+PROJECT_STATUS = (
+    ('1','Not yet started'),
+    ('2','In progress'),
+    ('3','Completed'),
+)
+
+DEFAULT_PROJECT_STATUS = '1'
+
 class projects(models.Model):
     title = models.CharField(max_length=300)
     description = models.TextField()
@@ -25,7 +34,7 @@ class projects(models.Model):
     email = models.EmailField()
     prerequisites = models.TextField(help_text='Enter pre-requisites as comma separated values')
     body = models.CharField(choices=BODIES,max_length=100,default=DEFAULT_BODY)
-
+    status = models.CharField(max_length=50,choices=PROJECT_STATUS,default=DEFAULT_PROJECT_STATUS)
 
     class Meta:
         verbose_name = 'Projects'

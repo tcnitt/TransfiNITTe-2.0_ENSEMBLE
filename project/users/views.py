@@ -1,5 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import UserForm
+from .models import user 
 
 # Create your views here.
 def RegisterUserView(request):
@@ -11,3 +12,9 @@ def RegisterUserView(request):
     else:
         form = UserForm()
     return render(request,'users/user_registration.html',{'form':form})
+
+
+def UserProfileView(request,id):
+    user_profile = get_object_or_404(user,id=id)
+    context = {'user':user_profile}
+    return render(request,'users/profile.html',context)

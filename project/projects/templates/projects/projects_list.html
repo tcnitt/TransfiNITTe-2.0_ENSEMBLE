@@ -11,7 +11,11 @@
     </form>
 {% for project in object_list %}
     <div style="list-style: none;padding: 10px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;width: 1000px;" class="card">
-        <li><b>Title : </b>{{ project.title }}</li>
+        <li>
+            <b>Title : </b>{{ project.title }} 
+            <span class="label {%if project.status == '1' %}label-default{% elif project.status == '2' %}label-warning{% elif project.status == '3' %}label-success{% endif %}">{{project.get_status_display }}
+            </span>
+        </li>
         <li><b>Posted by : </b>{{ project.author }}</li>
         <li><b>Domain(s) :</b> 
         {% for domain in project.domains_list %}

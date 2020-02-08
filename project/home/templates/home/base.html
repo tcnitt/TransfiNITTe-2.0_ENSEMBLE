@@ -31,9 +31,12 @@
         <li><a href="#">Resources</a></li>
         <li><a href="{% url 'home:terms-and-conditions' %}">Terms & <br> Conditions</a></li>
         <li><a href="{% url 'faq:list-faqs' %}">FAQ</a></li>
-        <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button>
-        <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button>
-        <!-- <li><a href="/research/">Research</a></li> -->
+        <div style="display: inline;">
+            <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button>
+            <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button>
+            <button class="btn btn-info"><a href="{% url 'users:profile' id=1 %}">PROFILE</a></button>
+        </div>
+       <!-- <li><a href="/research/">Research</a></li> -->
     </ul>
 </nav>
 <center>

@@ -6,5 +6,6 @@ app_name = 'users'
 
 urlpatterns = [
     path('register-user/',RegisterUserView,name='register-user'),
+    path('profile/<int:id>',UserProfileView,name='profile'),
     # path('',TemplateView.as_view(template_name='home/index.html'),name='home-page'),
 ]
