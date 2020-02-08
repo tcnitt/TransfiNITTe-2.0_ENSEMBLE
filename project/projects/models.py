@@ -7,6 +7,11 @@ BODIES = (
     ('Spider','Spider'),
     ('DataByte','DataByte'),
     ('CSE','Computer Science & Engineering dept'),
+    ('CIVIL','Civil Engineering dept'),
+    ('CHEM','Chemical Engineering dept'),
+    ('EEE','Electrical and Electronics Engineering dept'),
+    ('ECE','Electronics and Communications Engineering dept'),
+    ('MECH','Mechanical Engineering dept'),
 )
 
 DEFAULT_BODY = 'CSE'
@@ -21,7 +26,7 @@ class projects(models.Model):
     prerequisites = models.TextField(help_text='Enter pre-requisites as comma separated values')
     body = models.CharField(choices=BODIES,max_length=100,default=DEFAULT_BODY)
 
-    
+
     class Meta:
         verbose_name = 'Projects'
         verbose_name_plural = 'Projects'

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     path('projects/',include('projects.urls'),name='projects'),
     path('auth/',include('django.contrib.auth.urls'),name='login'),
     path('faq/',include('faq.urls'),name='faq'),
+    # path('resources/',include('resources.urls'),name='resources'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

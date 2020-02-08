@@ -6,7 +6,7 @@
 <ul>
 
     <form action="{% url 'projects:search-projects' %}" method="get">
-        <input name="q" type="text" placeholder="Search...">
+        <input name="q" type="text" placeholder="Search by domain,team,dept...">
         <input type="submit" value="Search"/>
     </form>
 {% for project in object_list %}
