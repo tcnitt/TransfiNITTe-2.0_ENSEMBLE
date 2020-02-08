@@ -11,5 +11,6 @@ This platform aims to make and sustain a culture of innovation and true engineer
 - Create a virtual environment - `virtualenv env`
 - Activate environment - `source env/bin/activate`
 - Install dependencies - `pip install -r requirements`
+- `cd project`
 - Run migrations - `python manage.py migrate`
 - Run server - `python manage.py runserver`
