@@ -1,7 +1,8 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-<h1><b>Projects</b></h1>
+<h1 style="display: inline-block;"><b>Projects</b></h1>
+<button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:add-project'%}"><span class="glyphicon glyphicon-plus"></span>POST NEW PROJECT</a></button>
 <ul>
 {% for project in object_list %}
     <div style="list-style: none;padding: 10px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;width: 1000px;" class="card">
@@ -19,12 +20,51 @@
             </li>
         <li><b>Phone : </b>{{ project.phone }}</li>
         <li><b>E-mail : </b>{{ project.email }}</li>
-        <button class="btn btn-success">I WANT <br>TO WORK</button>
-        <button class="btn btn-danger">I WANT <br>TO FUND</button>
-
+        <button class="btn btn-success" data-toggle="modal" data-target="#confirm-work-modal">I WANT <br>TO WORK</button>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-funding-modal">I WANT <br>TO FUND</button>
     </div>
 
+<!-- Project confirm Modal -->
+<div class="modal fade" id="confirm-work-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you confirm your application?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">YES</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+        </div>
+      </div>
+    </div>
+</div>
 
+<!-- Funding confirm Modal -->
+<div class="modal fade" id="confirm-funding-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you confirm you want to fund this project?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">YES</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+        </div>
+      </div>
+    </div>
+</div>
 {% empty %}
     <li>No projects yet.</li>
 {% endfor %}

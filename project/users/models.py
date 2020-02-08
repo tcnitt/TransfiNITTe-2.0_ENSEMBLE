@@ -30,6 +30,7 @@ class user(AbstractUser):
     transcript_link = models.URLField(max_length=200,help_text='Link to Transcript')
     areas_of_interest = models.CharField(max_length=200,help_text='Areas of interest')
 
+    REQUIRED_FIELDS = ['first_name','last_name','email','year','department','cgpa','github_link','linkedin_link','resume_link','transcript_link','areas_of_interest']
 
     def __str__(self):
         return self.get_full_name()+' - '+self.username

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'home/base.css' %}">
@@ -29,20 +31,19 @@
         <li><a href="/blogs/">Resources</a></li>
         <li><a href="/blogs/">Terms & <br> Conditions</a></li>
         <li><a href="/blogs/">FAQ</a></li>
-        {% if user.is_authenticated is True %}
-        <button class="btn btn-info"><a href="">LOGIN</a></button>
-        <button class="btn btn-info"><a href="">REGISTER</a></button>
-        {% endif %}
+        <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button>
+        <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button>
         <!-- <li><a href="/research/">Research</a></li> -->
     </ul>
 </nav>
 <center>
     {% block content %}
-    <div class="jumbotron">
+    <div class="jumbotron" style="padding:200px">
         Though our institute is among the best, we lack in a few fields, specially innovation.
-    Though we have amazing placements, we really have little to boast about our work.
-    
-    This platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
+        Though we have amazing placements, we really have little to boast about our work.
+        
+        This platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
+        
     </div>
     {% endblock %}
 </center>
