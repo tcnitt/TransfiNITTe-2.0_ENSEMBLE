@@ -1,0 +1,120 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+<form id="form1" class="form" action="">
+    <div class="form-group" style="display: inline;">
+        <label for="college1">College 1: </label>
+        <select id="college1" name="college1">
+            <option>IIT-B</a></option>
+            <option>IIT-M</a></option>
+            <option>IIT-K</a></option>
+            <option>IIT-D</a></option>
+        </select>
+    </div> &emsp;&emsp;&emsp;
+    <div class="form-group" style="display: inline;">
+        <label for="college2">College 2: </label>
+        <select id="college2" name="college2">
+            <option selected disabled>NIT-T</a></option>
+        </select>
+    </div>
+    </select> <br>
+    <!-- <input type="submit" value="COMPARE"/> -->
+    </div>
+</form>
+<button id="compare">COMPARE</button>
+<head>
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+<body>
+<center id="plots" style="visibility: hidden;">
+    <div style="width: 1000px;height: 300px;" id='num_of_papers'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div style="width: 1000px;height: 300px;" id='num_of_citations'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div style="width: 1000px;height: 300px;" id='acp'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div style="width: 1000px;height: 300px;" id='icp'><!-- Plotly chart will be drawn inside this DIV --></div>
+</center>
+</body>
+
+<script>
+$(document).ready(function(){
+    $("#compare").click(function(){
+        $("#plots").css('visibility', 'visible');
+    });
+
+    var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [25, 40, 45, 55],
+  name : $("#college1").val(),
+  type: 'scatter'
+};
+
+var trace2 = {
+  x: [1, 2, 3, 4],
+  y: [16, 5, 11, 9],
+  name : 'NIT-T',
+  type: 'scatter'
+};
+
+var layout = {
+  title: {
+    text:'No. of papers published over the years',
+    font: {
+      family: 'Courier New, monospace',
+      size: 24
+    },
+    xref: 'paper',
+    x: 0.05,
+  },
+  xaxis: {
+    title: {
+      text: 'Year',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'No. of papers',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    }
+  }
+};
+
+var layoutCitations = {
+title: {
+    text:'No. of citations over the years',
+    font: { family: 'Courier New, monospace',size: 24 },
+    xref: 'paper',x: 0.05,
+  },
+  xaxis: {
+    title: { text: 'Year',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18, color: '#7f7f7f' }},},
+  yaxis: {
+    title: {
+      text: 'No. of Citations',
+      font: {family: 'Courier New, monospace',size: 18,color: '#7f7f7f'}
+    }
+  }
+};
+
+var data = [trace1, trace2];
+
+Plotly.newPlot('num_of_papers', data,layout);
+Plotly.newPlot('num_of_citations', data,layoutCitations);
+Plotly.newPlot('acp', data,layout);
+Plotly.newPlot('icp', data,layout);
+});
+
+</script>
+{% endblock %}

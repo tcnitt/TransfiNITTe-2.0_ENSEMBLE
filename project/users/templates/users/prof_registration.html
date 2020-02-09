@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-<h1><b>Student registration</b></h1>
+<h1><b>Professor registration</b></h1>
 <ul>
 
 {% if form.errors %}
@@ -18,7 +18,7 @@
     </div>
     {% endfor %}
 {% endif %}
-<form style="width: 600px;text-align: left;" action="{% url 'users:register-user' %}" method="post">
+<form style="width: 600px;text-align: left;" action="{% url 'users:prof-register' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit">

@@ -11,8 +11,8 @@
     </form>
 {% for project in object_list %}
 {% if forloop.first %}<div class="row">{% endif %}
-    <div style="list-style: none;padding: 10px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-6 col-sm-6 col-md-4 card">
-        <li><b>Title : </b>{{ project.title }}</li>
+    <div style="list-style: none;margin: 0px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-6 col-sm-6 col-md-4 card">
+        <h2>{{ project.title }}</h2>
         <li>
             By : <span class="label label-success">{{ project.get_body_display }}</span>
             <span class="label {%if project.status == '1' %}label-default{% elif project.status == '2' %}label-warning{% elif project.status == '3' %}label-success{% endif %}">{{project.get_status_display}}</span>
@@ -27,11 +27,15 @@
             {% for prerequisites in project.prerequisites_list %}
                 <span class="label label-warning">{{ prerequisites }}</span>
             {% endfor %}
-            </li>
+        </li>
+        <li>Approx duration : <span class="label label-primary">{{ project.get_duration_display }}</span></li>
         <li><b>Phone : </b>{{ project.phone }} <br>
             <b>E-mail : </b>{{ project.email }}
         </li>
-        <button class="btn btn-success" data-toggle="modal" data-target="#confirm-work-modal">I WANT <br>TO WORK</button> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        {% if project.link %}
+        <li><a target="_blank" href="{{ project.link }}">Link</a></li>
+        {% endif %}
+        <button class="btn btn-success" data-toggle="modal" data-target="#confirm-work-modal">I WANT <br>TO WORK</button> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-funding-modal">I WANT <br>TO FUND</button>
     </div>
     {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
@@ -50,6 +54,11 @@
           </button>
         </div>
         <div class="modal-body">
+          <p class="alert alert-danger">Kindly read the <a href="{% url 'home:terms-and-conditions' %}">T&C</a> before applying.</p>
+          <form action="">
+              <label for="sop">Statement of Purpose</label>
+              <textarea name="sop" id="sop" cols="30" rows="10"></textarea>
+          </form>
           Do you confirm your application?
         </div>
         <div class="modal-footer">

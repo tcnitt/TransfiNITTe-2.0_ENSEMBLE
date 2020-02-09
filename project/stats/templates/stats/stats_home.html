@@ -14,11 +14,12 @@
         <li><a href="javascript:show_graphs('PROD')">PROD</a></li>
         <li style="background-color: red;"><a href="{% url 'stats:compare-departments' %}">COMPARE</a></li>
   </ul>
-  <div id="dept_charts" style="visibility: hidden;">
-    <h1 id="dept_name"></h1>
+  <div id="dept_charts" style="visibility:invisible;">
+    <h1 id="dept_name">Computer Science and Engineering dept</h1>
     {% include 'stats/cse.html' %}
   </div>
 </nav>
+
 <script>
 $(document).ready(function(){
 });

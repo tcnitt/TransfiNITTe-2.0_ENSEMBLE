@@ -1,0 +1,26 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<nav class="navbar-nav">
+    <ul>
+        <li><a href="{% url 'home:home-page' %}">Home</a></li>
+        <li><a href="{% url 'projects:list-projects' %}">Projects</a></li>
+        <li><a href="{% url 'stats:stats-home' %}">Department <br> stats</a></li>
+        <li><a href="#">Where do <br> we stand?</a></li>
+        <li><a href="{% url 'home:about-us' %}">About Us</a></li>
+        <li><a href="{% url 'help:help-list' %}">Resources</a></li>
+        <li><a href="{% url 'home:terms-and-conditions' %}">Terms & <br> Conditions</a></li>
+        <li><a href="{% url 'faq:list-faqs' %}">FAQ</a></li>
+        <div style="display: inline;">
+            <button class="btn btn-info"><a href="{% url 'users:prof-profile' %}">PROFILE</a></button>
+            <button class="btn btn-info"><a href="{% url 'logout' %}">LOGOUT</a></button>
+            <!-- <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button> -->
+            <!-- <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button> -->
+            {% endif %}
+        </div>
+       <!-- <li><a href="/research/">Research</a></li> -->
+    </ul>
+</nav>
+<h1>Welcome, Dr. Muthu</h1>
+
+{% endblock %}

@@ -18,16 +18,18 @@
 </head>
 <body>
     <div class="jumbotron text-center" style="background:rgb(0, 0, 0);color: white;margin-bottom: 0px;">
-        <a href="{% url 'home:home-page' %}"><img height="150px" width="150px" src='{% static "home/nitt-logo.png" %}' alt="logo"></a>
-        <h1 style="display: inline-block;"><b>Innovation at NIT-T </b></h1>
+        <a href="{% url 'home:home-page' %}"><img height="200px" width="200px" src='{% static "home/logo.png" %}' alt="logo" style="border-style: solid;border-color:white;border-width:1px;"></a>
+        <h1 style="display: inline-block;"><b>Innovate </b></h1>
+        <a href="https://www.nitt.edu/"><img style="float: right;" height="150px" width="150px" src='{% static "home/nitt-logo.png" %}' alt="logo"></a>
         <p>Transforming NIT-T's Innovation landscape</p>         
 </div>
+{% block nav %}
 <nav class="navbar-nav">
     <ul>
         <li><a href="{% url 'home:home-page' %}">Home</a></li>
         <li><a href="{% url 'projects:list-projects' %}">Projects</a></li>
         <li><a href="{% url 'stats:stats-home' %}">Department <br> stats</a></li>
-        <li><a href="#">Where do <br> we stand?</a></li>
+        <li><a href="{% url 'stats:compare-colleges' %}">Where do <br> we stand?</a></li>
         <li><a href="{% url 'home:about-us' %}">About Us</a></li>
         <li><a href="{% url 'help:help-list' %}">Resources</a></li>
         <li><a href="{% url 'home:terms-and-conditions' %}">Terms & <br> Conditions</a></li>
@@ -44,13 +46,14 @@
        <!-- <li><a href="/research/">Research</a></li> -->
     </ul>
 </nav>
+{% endblock %}
 <center>
     {% block content %}
     <div class="jumbotron" style="padding:200px">
         <b>
-        Though our institute is among the best, we lack in a few fields, specially innovation.
-        Though we have amazing placements, we really have little to boast about our work.
-        This platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
+        Though we are the no.1 NIT, we have a long way to go to become the best nationally as well as globally.
+        W have amazing placements, but we really have little to boast about our work.
+        <br><br> In line with the director's vision of making ours a Top-100 global institute,this platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
         </b>
     </div>
     <div class="container-fluid bg-grey">
@@ -60,9 +63,9 @@
           </div>
           <div class="col-sm-8">
             <h2>Our Values</h2><br>
-            <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-            <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <h4><strong>MISSION:</strong> Our mission is to encourage students to take up research in their field of interests. We aim to support students and provide them with all the opportunites to innovate.</h4><br>
+            <p><strong>VISION:</strong> Our vision is that in the future our students working with professors fulfill their potential and leave an impact on the society. We hope to make NIT Trichy one of the top institues in the entire world.
+            </p>
           </div>
         </div>
       </div>
@@ -74,37 +77,32 @@
         <br>
         <div class="row slideanim">
           <div class="col-sm-4">
-            <span class="glyphicon glyphicon-off logo-small"></span>
-            <h4>POWER</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
+            <span class="glyphicon glyphicon-road logo-small"></span>
+            <h4>OPPORTUNITES</h4>
           </div>
           <div class="col-sm-4">
             <span class="glyphicon glyphicon-heart logo-small"></span>
-            <h4>LOVE</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
+            <h4>PASSION</h4>
           </div>
           <div class="col-sm-4">
-            <span class="glyphicon glyphicon-lock logo-small"></span>
-            <h4>JOB DONE</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
+            <span class="glyphicon glyphicon-globe logo-small"></span>
+            <h4>EASY COMMUNICATION</h4>
           </div>
         </div>
         <br><br>
         <div class="row slideanim">
           <div class="col-sm-4">
-            <span class="glyphicon glyphicon-leaf logo-small"></span>
-            <h4>GREEN</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
+            <span class="glyphicon glyphicon-filter logo-small"></span>
+            <h4>PERSONALIZED</h4>
+            
           </div>
           <div class="col-sm-4">
             <span class="glyphicon glyphicon-certificate logo-small"></span>
-            <h4>CERTIFIED</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
+            <h4>AUTHENTIC</h4>
           </div>
           <div class="col-sm-4">
             <span class="glyphicon glyphicon-wrench logo-small"></span>
             <h4 style="color:#303030;">HARD WORK</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
           </div>
         </div>
       </div>
@@ -137,6 +135,17 @@
   </div>
     {% endblock %}
 </center>
+<footer>
+    <hr>
+        <div class="text-center center-block">
+            <br />
+                <a target="_blank" href="https://www.facebook.com/DataByteNITT/"><i id="social-fb" class="fa fa-facebook-square fa-x social"></i></a>
+                <a target="_blank" href="https://twitter.com/databytenitt"><i id="social-tw" class="fa fa-twitter-square fa-x social"></i></a>
+                <a target="_blank" href="https://medium.com/databytenitt"><i class="fa fa-medium fa-x social"></i></a>
+        </div>
+        
+    <hr>
+</footer>
 </body>
 <script>
     $(document).ready(function(){
