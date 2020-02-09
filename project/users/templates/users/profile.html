@@ -72,7 +72,7 @@
     <div style="list-style: none;padding: 10px;border-style: solid;border-width: 5px;border-radius: 2%;border-color: black;">
         <li>{{ project.title }} <span class="label label-success">{{ project.get_body_display }}</span> <span class="label label-info">{{ project.get_status_display}}</span></li>
     <li>Feedback : {{ project.feedback.comment }}</li>
-    <li>Rating : {{ project.feedback.rating }}/5</li>
+    <li>Rating : <span class="label label-warning">{{ project.feedback.rating }}/5</span></li>
     </div>
     {% endfor %}
 </div>

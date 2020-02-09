@@ -65,6 +65,7 @@ class projects(models.Model):
     degree = models.CharField(max_length=20,choices=DEGREE_CHOICES,default=DEFAULT_DEGREE)
     duration = models.CharField(max_length=20,choices=PROJECT_DURATION,default=DEFAULT_PROJECT_DURATION)
     link = models.URLField(max_length=200,blank=True,help_text='Links if any')
+    required = models.PositiveSmallIntegerField(default=1,help_text='No. of people required')
     class Meta:
         verbose_name = 'Projects'
         verbose_name_plural = 'Projects'

@@ -3,6 +3,7 @@
 {% block content %}
 <h1 style="display: inline-block;"><b>Projects</b></h1>
 <button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:add-project'%}"><span class="glyphicon glyphicon-plus"></span>POST NEW PROJECT</a></button>
+<button  class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:candidate-recommendations'%}"><span class="glyphicon glyphicon-search"></span>FIND CANDIDATES</a></button>
 <ul>
 
     <form action="{% url 'projects:search-projects' %}" method="get">
@@ -11,7 +12,7 @@
     </form>
 {% for project in object_list %}
 {% if forloop.first %}<div class="row">{% endif %}
-    <div style="list-style: none;margin: 0px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-6 col-sm-6 col-md-4 card">
+    <div style="height:500px;list-style: none;margin: 0px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-6 col-sm-6 col-md-4 card">
         <h2>{{ project.title }}</h2>
         <li>
             By : <span class="label label-success">{{ project.get_body_display }}</span>
@@ -32,6 +33,7 @@
         <li><b>Phone : </b>{{ project.phone }} <br>
             <b>E-mail : </b>{{ project.email }}
         </li>
+        <li>Required : {{ project.required }}</li>
         {% if project.link %}
         <li><a target="_blank" href="{{ project.link }}">Link</a></li>
         {% endif %}
@@ -59,7 +61,9 @@
               <label for="sop">Statement of Purpose</label>
               <textarea name="sop" id="sop" cols="30" rows="10"></textarea>
           </form>
-          Do you confirm your application?
+          Do you confirm your application? <br>
+          <small>*Your profile will be made available to the concerned person for shortlisting.
+        </small>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">YES</button> 
@@ -80,7 +84,17 @@
           </button>
         </div>
         <div class="modal-body">
-          Do you confirm you want to fund this project?
+            <p class="alert alert-danger">Kindly read the <a href="{% url 'home:terms-and-conditions' %}">T&C</a> before applying.</p>
+          <form action="" style="width: 400px;">
+              <label for="Name">Name</label>
+              <input type="text" name="Name"> <br>
+              <label for="Organization">Organization</label>
+              <input type="text" name="Organization"> <br>
+              <label for="E-mail">E-mail</label>
+              <input type="text" name="E-mail">
+
+          </form>
+          Do you confirm your interest to fund this project?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">YES</button>

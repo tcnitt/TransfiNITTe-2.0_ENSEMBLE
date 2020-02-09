@@ -42,7 +42,7 @@ class CandidateRecommendationView(ListView):
     template_name = 'projects/candidates.html'
 
     def get_queryset(self): # new
-        query = self.request.GET.get('q')
+        query = self.request.GET.get('q') or ''
         return user.objects.filter(
             Q(areas_of_interest__icontains=query) | 
             Q(bio__icontains=query) |
