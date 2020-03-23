@@ -14,3 +14,5 @@ This platform aims to make and sustain a culture of innovation and true engineer
 - `cd project`
 - Run migrations - `python manage.py migrate`
 - Run server - `python manage.py runserver`
+
+
