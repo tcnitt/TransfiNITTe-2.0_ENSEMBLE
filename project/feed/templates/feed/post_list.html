@@ -12,9 +12,9 @@
         <div class="col-lg-2"></div>
         <div style="overflow-y: scroll;height:300px;list-style: none;text-align: center;margin: 0px;border: 5px solid black;border-radius: 10px;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 card">
             <img style="height: 100px; width: 100px;" src="{{ post.author.photo.url }}" alt="">
-            <h2 style="display: inline;"><b>{{ post.title }}</b></h2> <br>
+            <h2 style="display: inline;"><b>{{ post.title }}</b></h2>
             <img style="height: 150px; width: 150px;float: left;margin: 10px;" src="{{ post.photo.url }}" alt="">
-            <li><b>Posted by : </b><a target="_blank" href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></li>
+            <li>{{ post.created }}<b style="padding-left: 30px;">Posted by : </b><a target="_blank" href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></li>
             <div style="color: black;font-weight: bolder;">
                 {{ post.body | urlizetrunc:30 }}
             </div>
