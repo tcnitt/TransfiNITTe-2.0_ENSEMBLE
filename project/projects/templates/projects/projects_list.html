@@ -1,7 +1,10 @@
 {% extends 'home/base.html' %} {% block content %}
-<h1 style="display: inline-block;"><b>Projects</b></h1>
-<button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:add-project'%}"><span class="glyphicon glyphicon-plus"></span>POST NEW PROJECT</a></button>
-<button class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:candidate-recommendations'%}"><span class="glyphicon glyphicon-search"></span>FIND CANDIDATES</a></button>
+<center>
+    <h1 style="display: inline-block;"><b>Projects</b></h1> <br>
+    <button class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:add-project'%}"><span class="glyphicon glyphicon-plus"></span>POST NEW PROJECT</a></button>
+    <button class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:candidate-recommendations'%}"><span class="glyphicon glyphicon-search"></span>FIND CANDIDATES</a></button>
+    <br> <br>
+</center>
 <ul>
 
     <form action="{% url 'projects:search-projects' %}" method="get">

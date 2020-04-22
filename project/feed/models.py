@@ -5,13 +5,13 @@ import os
 
 
 POST_PHOTO_PATH = 'post_photos/%d/%m/%Y'
-DEFAULT_POST_PHOTO = os.path.join(POST_PHOTO_PATH,'default.jpg')
+DEFAULT_POST_PHOTO = os.path.join('post_photos/default.jpg')
 
 class post(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to=POST_PHOTO_PATH,blank=True,default=DEFAULT_POST_PHOTO)
+    photo = models.ImageField(upload_to='post_photos/%d/%m/%Y',blank=True,default=DEFAULT_POST_PHOTO)
 
 
     def __str__(self):
