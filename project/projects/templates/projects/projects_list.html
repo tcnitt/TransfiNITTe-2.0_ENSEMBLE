@@ -1,107 +1,101 @@
-{% extends 'home/base.html' %}
-
-{% block content %}
+{% extends 'home/base.html' %} {% block content %}
 <h1 style="display: inline-block;"><b>Projects</b></h1>
 <button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:add-project'%}"><span class="glyphicon glyphicon-plus"></span>POST NEW PROJECT</a></button>
-<button  class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:candidate-recommendations'%}"><span class="glyphicon glyphicon-search"></span>FIND CANDIDATES</a></button>
+<button class="btn btn-success p-5"><a style="color:white" href="{% url 'projects:candidate-recommendations'%}"><span class="glyphicon glyphicon-search"></span>FIND CANDIDATES</a></button>
 <ul>
 
     <form action="{% url 'projects:search-projects' %}" method="get">
         <input name="q" type="text" placeholder="Search by domain,team,dept...">
-        <input type="submit" value="Search"/>
+        <input type="submit" value="Search" />
     </form>
-{% for project in object_list %}
-{% if forloop.first %}<div class="row">{% endif %}
-    <div style="height:500px;list-style: none;margin: 0px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-6 col-sm-6 col-md-4 card">
-        <h2>{{ project.title }}</h2>
-        <li>
-            By : <span class="label label-success">{{ project.get_body_display }}</span>
-            <span class="label {%if project.status == '1' %}label-default{% elif project.status == '2' %}label-warning{% elif project.status == '3' %}label-success{% endif %}">{{project.get_status_display}}</span>
-        </li>
-        <li><b>Posted by : </b>{{ project.author }}</li>
-        <li><b>Domain(s) :</b> 
-        {% for domain in project.domains_list %}
-            <span class="label label-success">{{ domain }}</span>
-        {% endfor %}
-        </li>
-        <li><b>Pre-requisites(s) :</b> 
-            {% for prerequisites in project.prerequisites_list %}
-                <span class="label label-warning">{{ prerequisites }}</span>
-            {% endfor %}
-        </li>
-        <li>Approx duration : <span class="label label-primary">{{ project.get_duration_display }}</span></li>
-        <li><b>Phone : </b>{{ project.phone }} <br>
-            <b>E-mail : </b>{{ project.email }}
-        </li>
-        <li>Required : {{ project.required }}</li>
-        {% if project.link %}
-        <li><a target="_blank" href="{{ project.link }}">Link</a></li>
-        {% endif %}
-        <button class="btn btn-success" data-toggle="modal" data-target="#confirm-work-modal">I WANT <br>TO WORK</button> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-funding-modal">I WANT <br>TO FUND</button>
-    </div>
-    {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
-        {% if forloop.last %}</div>{% endif %}
-    {% empty %}
+    {% for project in object_list %} {% if forloop.first %}
+    <div class="row">{% endif %}
+        <div style="height:500px;list-style: none;margin: 0px;text-align:left;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-6 col-sm-6 col-md-4 card">
+            <h2>{{ project.title }}</h2>
+            <li>
+                By : <span class="label label-success">{{ project.get_body_display }}</span>
+                <span class="label {%if project.status == '1' %}label-default{% elif project.status == '2' %}label-warning{% elif project.status == '3' %}label-success{% endif %}">{{project.get_status_display}}</span>
+            </li>
+            <li><b>Posted by : </b>{{ project.author }}</li>
+            <li><b>Domain(s) :</b> {% for domain in project.domains_list %}
+                <span class="label label-success">{{ domain }}</span> {% endfor %}
+            </li>
+            <li><b>Pre-requisites(s) :</b> {% for prerequisites in project.prerequisites_list %}
+                <span class="label label-warning">{{ prerequisites }}</span> {% endfor %}
+            </li>
+            <li>Approx duration : <span class="label label-primary">{{ project.get_duration_display }}</span></li>
+            <li><b>Phone : </b>{{ project.phone }} <br>
+                <b>E-mail : </b>{{ project.email }}
+            </li>
+            <li>Required : {{ project.required }}</li>
+            {% if project.link %}
+            <li><a target="_blank" href="{{ project.link }}">Link</a></li>
+            {% endif %}
+            <button class="btn btn-success" data-toggle="modal" data-target="#confirm-work-modal">I WANT <br>TO WORK</button> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button class="btn btn-danger" data-toggle="modal" data-target="#confirm-funding-modal">I WANT <br>TO FUND</button>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div>
+    <div class="row">{% endif %} {% if forloop.last %}</div>{% endif %} {% empty %}
     <li>No projects yet.</li>
-{% endfor %}
-<!-- Project confirm Modal -->
-<div class="modal fade" id="confirm-work-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    {% endfor %}
+    <!-- Project confirm Modal -->
+    <div class="modal fade" id="confirm-work-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
-        <div class="modal-body">
-          <p class="alert alert-danger">Kindly read the <a href="{% url 'home:terms-and-conditions' %}">T&C</a> before applying.</p>
-          <form action="">
-              <label for="sop">Statement of Purpose</label>
-              <textarea name="sop" id="sop" cols="30" rows="10"></textarea>
-          </form>
-          Do you confirm your application? <br>
-          <small>*Your profile will be made available to the concerned person for shortlisting.
+                </div>
+                <div class="modal-body">
+                    <p class="alert alert-danger">Kindly read the <a href="{% url 'home:terms-and-conditions' %}">T&C</a> before applying.</p>
+                    <form action="">
+                        <label for="sop">Statement of Purpose</label>
+                        <textarea name="sop" id="sop" cols="30" rows="10" required placeholder="Why do you want to work in this project? What excites you about it? How can you contribute to it? What relevant skills do you have?"></textarea>
+                        <br> Do you confirm your application? <br>
+                        <small>*Your profile will be made available to the concerned person for shortlisting.
         </small>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">YES</button> 
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
-        </div>
-      </div>
-    </div>
-</div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">YES</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                        </div>
+                    </form>
+                </div>
 
-<!-- Funding confirm Modal -->
-<div class="modal fade" id="confirm-funding-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </div>
+        </div>
+    </div>
+
+    <!-- Funding confirm Modal -->
+    <div class="modal fade" id="confirm-funding-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
-        <div class="modal-body">
-            <p class="alert alert-danger">Kindly read the <a href="{% url 'home:terms-and-conditions' %}">T&C</a> before applying.</p>
-          <form action="" style="width: 400px;">
-              <label for="Name">Name</label>
-              <input type="text" name="Name"> <br>
-              <label for="Organization">Organization</label>
-              <input type="text" name="Organization"> <br>
-              <label for="E-mail">E-mail</label>
-              <input type="text" name="E-mail">
+                </div>
+                <div class="modal-body">
+                    <p class="alert alert-danger">Kindly read the <a href="{% url 'home:terms-and-conditions' %}">T&C</a> before applying.</p>
+                    <form action="" style="width: 400px;">
+                        <label for="Name">Name</label>
+                        <input type="text" name="Name"> <br>
+                        <label for="Organization">Organization</label>
+                        <input type="text" name="Organization"> <br>
+                        <label for="E-mail">E-mail</label>
+                        <input type="text" name="E-mail">
 
-          </form>
-          Do you confirm your interest to fund this project?
+                    </form>
+                    Do you confirm your interest to fund this project?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">YES</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">YES</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
-        </div>
-      </div>
     </div>
-</div>
 </ul>
 {% endblock %}
