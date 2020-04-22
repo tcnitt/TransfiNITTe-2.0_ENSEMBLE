@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
-{% load auth_extras %}
+{% load static %} {% load auth_extras %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,170 +16,171 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>{% block title %}Transforming NIT-T{% endblock %}</title>
 </head>
+
 <body>
     <div class="jumbotron text-center" style="background:rgb(0, 0, 0);color: white;margin-bottom: 0px;">
         <a href="{% url 'home:home-page' %}"><img height="200px" width="200px" src='{% static "home/logo.png" %}' alt="logo" style="border-style: solid;border-color:white;border-width:1px;"></a>
         <h1 style="display: inline-block;"><b>Innovate </b></h1>
         <a href="https://www.nitt.edu/"><img style="float: right;" height="150px" width="150px" src='{% static "home/nitt-logo.png" %}' alt="logo"></a>
-        <p>Transforming NIT-T's Innovation landscape</p>         
-</div>
-{% block nav %}
-<nav class="navbar-nav">
-    <ul>
-        <li><a href="{% url 'home:home-page' %}">Home</a></li>
-        <li><a href="{% url 'projects:list-projects' %}">Projects</a></li>
-        <li><a href="{% url 'stats:stats-home' %}">Department <br> stats</a></li>
-        <li><a href="{% url 'stats:compare-colleges' %}">Where do <br> we stand?</a></li>
-        <li><a href="{% url 'home:about-us' %}">About Us</a></li>
-        <li><a href="{% url 'help:help-list' %}">Resources</a></li>
-        <li><a href="{% url 'home:terms-and-conditions' %}">Terms & <br> Conditions</a></li>
-        <li><a href="{% url 'faq:list-faqs' %}">FAQ</a></li>
-        <div style="display: inline;">
-            {% if user.is_authenticated %}
-            <button class="btn btn-info"><a href="{% url 'users:profile' id=user.id %}">PROFILE</a></button>
-            <button class="btn btn-info"><a href="{% url 'logout' %}">LOGOUT</a></button>
-            {% else %}
-            <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button>
-            <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button>
-            {% endif %}
-        </div>
-       <!-- <li><a href="/research/">Research</a></li> -->
-    </ul>
-</nav>
-{% endblock %}
-<center>
-    {% block content %}
-    <div class="jumbotron" style="padding:200px">
-        <b>
+        <p>Transforming NIT-T's Innovation landscape</p>
+    </div>
+    {% block nav %}
+    <nav class="navbar-nav">
+        <ul>
+            <li><a href="{% url 'home:home-page' %}">Home</a></li>
+            <li><a href="{% url 'feed:list-posts' %}">Activity</a></li>
+            <li><a href="{% url 'projects:list-projects' %}">Projects</a></li>
+            <li><a href="{% url 'stats:stats-home' %}">Department <br> stats</a></li>
+            <li><a href="{% url 'stats:compare-colleges' %}">Where do <br> we stand?</a></li>
+            <li><a href="{% url 'home:about-us' %}">About Us</a></li>
+            <li><a href="{% url 'help:help-list' %}">Resources</a></li>
+            <li><a href="{% url 'home:terms-and-conditions' %}">Terms & <br> Conditions</a></li>
+            <li><a href="{% url 'faq:list-faqs' %}">FAQ</a></li>
+            <div style="display: inline;">
+                {% if user.is_authenticated %}
+                <button class="btn btn-info"><a href="{% url 'users:profile' id=user.id %}">PROFILE</a></button>
+                <button class="btn btn-info"><a href="{% url 'logout' %}">LOGOUT</a></button> {% else %}
+                <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button>
+                <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button> {% endif %}
+            </div>
+            <!-- <li><a href="/research/">Research</a></li> -->
+        </ul>
+    </nav>
+    {% endblock %}
+    <center>
+        {% block content %}
+        <div class="jumbotron" style="padding:200px">
+            <b>
         Though we are the no.1 NIT, we have a long way to go to become the best nationally as well as globally.
         W have amazing placements, but we really have little to boast about our work.
         <br><br> In line with the director's vision of making ours a Top-100 global institute,this platform aims to make and sustain a culture of innovation and true engineering at NIT-Trichy.
         </b>
-    </div>
-    <div class="container-fluid bg-grey">
-        <div class="row">
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-globe logo slideanim"></span>
-          </div>
-          <div class="col-sm-8">
-            <h2>Our Values</h2><br>
-            <h4><strong>MISSION:</strong> Our mission is to encourage students to take up research in their field of interests. We aim to support students and provide them with all the opportunites to innovate.</h4><br>
-            <p><strong>VISION:</strong> Our vision is that in the future our students working with professors fulfill their potential and leave an impact on the society. We hope to make NIT Trichy one of the top institues in the entire world.
-            </p>
-          </div>
         </div>
-      </div>
-      
-      <!-- Container (Services Section) -->
-      <div id="services" class="container-fluid text-center">
-        <h2>What we offer</h2>
-        <br>
-        <div class="row slideanim">
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-road logo-small"></span>
-            <h4>OPPORTUNITES</h4>
-          </div>
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-heart logo-small"></span>
-            <h4>PASSION</h4>
-          </div>
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-globe logo-small"></span>
-            <h4>EASY COMMUNICATION</h4>
-          </div>
+        <div class="container-fluid bg-grey">
+            <div class="row">
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-globe logo slideanim"></span>
+                </div>
+                <div class="col-sm-8">
+                    <h2>Our Values</h2><br>
+                    <h4><strong>MISSION:</strong> Our mission is to encourage students to take up research in their field of interests. We aim to support students and provide them with all the opportunites to innovate.</h4><br>
+                    <p><strong>VISION:</strong> Our vision is that in the future our students working with professors fulfill their potential and leave an impact on the society. We hope to make NIT Trichy one of the top institues in the entire world.
+                    </p>
+                </div>
+            </div>
         </div>
-        <br><br>
-        <div class="row slideanim">
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-filter logo-small"></span>
-            <h4>PERSONALIZED</h4>
-            
-          </div>
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-certificate logo-small"></span>
-            <h4>AUTHENTIC</h4>
-          </div>
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-wrench logo-small"></span>
-            <h4 style="color:#303030;">HARD WORK</h4>
-          </div>
+
+        <!-- Container (Services Section) -->
+        <div id="services" class="container-fluid text-center">
+            <h2>What we offer</h2>
+            <br>
+            <div class="row slideanim">
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-road logo-small"></span>
+                    <h4>OPPORTUNITES</h4>
+                </div>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-heart logo-small"></span>
+                    <h4>PASSION</h4>
+                </div>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-globe logo-small"></span>
+                    <h4>EASY COMMUNICATION</h4>
+                </div>
+            </div>
+            <br><br>
+            <div class="row slideanim">
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-filter logo-small"></span>
+                    <h4>PERSONALIZED</h4>
+
+                </div>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-certificate logo-small"></span>
+                    <h4>AUTHENTIC</h4>
+                </div>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-wrench logo-small"></span>
+                    <h4 style="color:#303030;">HARD WORK</h4>
+                </div>
+            </div>
         </div>
-      </div>
-      <!-- Container (Contact Section) -->
-<div id="contact" class="container-fluid bg-grey">
-    <h2 class="text-center">CONTACT</h2>
-    <div class="row">
-      <div class="col-sm-5">
-        <p><span class="glyphicon glyphicon-map-marker"></span>NIT-Tiruchirappalli,620015</p>
-        <p><span class="glyphicon glyphicon-phone"></span> +91 9677135980</p>
-        <p><span class="glyphicon glyphicon-envelope"></span> innovatenitt@nitt.edu</p>
-      </div>
-      <div class="col-sm-7 slideanim">
-        <div class="row">
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-          </div>
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-          </div>
+        <!-- Container (Contact Section) -->
+        <div id="contact" class="container-fluid bg-grey">
+            <h2 class="text-center">CONTACT</h2>
+            <div class="row">
+                <div class="col-sm-5">
+                    <p><span class="glyphicon glyphicon-map-marker"></span>NIT-Tiruchirappalli,620015</p>
+                    <p><span class="glyphicon glyphicon-phone"></span> +91 9677135980</p>
+                    <p><span class="glyphicon glyphicon-envelope"></span> innovatenitt@nitt.edu</p>
+                </div>
+                <div class="col-sm-7 slideanim">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button class="btn btn-default pull-right" type="submit">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-        <div class="row">
-          <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit">Send</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    {% endblock %}
-</center>
-<footer>
-    <hr>
+        {% endblock %}
+    </center>
+    <footer>
+        <hr>
         <div class="text-center center-block">
             <br />
-                <a target="_blank" href="https://www.facebook.com/DataByteNITT/"><i id="social-fb" class="fa fa-facebook-square fa-x social"></i></a>
-                <a target="_blank" href="https://twitter.com/databytenitt"><i id="social-tw" class="fa fa-twitter-square fa-x social"></i></a>
-                <a target="_blank" href="https://medium.com/databytenitt"><i class="fa fa-medium fa-x social"></i></a>
+            <a target="_blank" href="https://www.facebook.com/DataByteNITT/"><i id="social-fb" class="fa fa-facebook-square fa-x social"></i></a>
+            <a target="_blank" href="https://twitter.com/databytenitt"><i id="social-tw" class="fa fa-twitter-square fa-x social"></i></a>
+            <a target="_blank" href="https://medium.com/databytenitt"><i class="fa fa-medium fa-x social"></i></a>
         </div>
-        
-    <hr>
-</footer>
+
+        <hr>
+    </footer>
 </body>
 <script>
-    $(document).ready(function(){
-      // Add smooth scrolling to all links in navbar + footer link
-      $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-        // Make sure this.hash has a value before overriding default behavior
-        if (this.hash !== "") {
-          // Prevent default anchor click behavior
-          event.preventDefault();
-    
-          // Store hash
-          var hash = this.hash;
-    
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 900, function(){
-       
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        } // End if
-      });
-      
-      $(window).scroll(function() {
-        $(".slideanim").each(function(){
-          var pos = $(this).offset().top;
-    
-          var winTop = $(window).scrollTop();
-            if (pos < winTop + 600) {
-              $(this).addClass("slide");
-            }
+    $(document).ready(function() {
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 900, function() {
+
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
         });
-      });
+
+        $(window).scroll(function() {
+            $(".slideanim").each(function() {
+                var pos = $(this).offset().top;
+
+                var winTop = $(window).scrollTop();
+                if (pos < winTop + 600) {
+                    $(this).addClass("slide");
+                }
+            });
+        });
     })
-    </script>
+</script>
+
 </html>

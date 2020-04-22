@@ -1,0 +1,29 @@
+{% extends 'home/base.html' %} {% block content %}
+
+
+<h1 style="display: inline-block;"><b>Recent activity</b></h1>
+<button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'feed:create-post'%}"><span class="glyphicon glyphicon-plus"></span> NEW POST</a></button>
+<ul>
+
+    {% for post in object_list %}
+    <div class="row">
+        <div style="height:300px;list-style: none;text-align: center;margin: 0px;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 card">
+            <img style="height: 100px; width: 100px;" src="{{ post.author.photo.url }}" alt="">
+            <h2 style="display: inline;">{{ post.title }}</h2> <br>
+            <img style="height: 200px; width: 200px;" src="{{ post.image.url }}" alt="">
+            <li><b>Posted by : </b>{{ post.author }}</li>
+            <!-- <li><b>Domain(s) :</b> {% for domain in post.domains_list %}
+                <span class="label label-success">{{ domain }}</span> {% endfor %}
+            </li> -->
+            <!-- {% if post.link %}
+            <li><a target="_blank" href="{{ post.link }}">Link</a></li>
+            {% endif %} -->
+            <div style="overflow-y: scroll;" style="background: black;color: white;">
+                {{ post.body }}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <li>No posts yet.</li>
+    {% endfor %} {% endblock %}
+</ul>

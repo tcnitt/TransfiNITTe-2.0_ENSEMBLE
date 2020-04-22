@@ -29,6 +29,7 @@ urlpatterns = [
     path('faq/',include('faq.urls'),name='faq'),
     path('stats/',include('stats.urls'),name='stats'),
     path('help/',include('help.urls'),name='help'),
+    path('feed/',include('feed.urls'),name='feed'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
