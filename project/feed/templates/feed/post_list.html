@@ -7,10 +7,11 @@
 
     {% for post in object_list %}
     <div class="row">
-        <div style="height:300px;list-style: none;text-align: center;margin: 0px;border: 5px;border-style: solid;border-radius: 2%;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 card">
+        <div class="col-lg-2"></div>
+        <div style="overflow-y: scroll;height:300px;list-style: none;text-align: center;margin: 0px;border: 5px solid black;border-radius: 10px;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 card">
             <img style="height: 100px; width: 100px;" src="{{ post.author.photo.url }}" alt="">
             <h2 style="display: inline;">{{ post.title }}</h2> <br>
-            <img style="height: 200px; width: 200px;" src="{{ post.image.url }}" alt="">
+            <img style="height: 200px; width: 200px;float: left;" src="{{ post.photo.url }}" alt="">
             <li><b>Posted by : </b>{{ post.author }}</li>
             <!-- <li><b>Domain(s) :</b> {% for domain in post.domains_list %}
                 <span class="label label-success">{{ domain }}</span> {% endfor %}
@@ -18,10 +19,11 @@
             <!-- {% if post.link %}
             <li><a target="_blank" href="{{ post.link }}">Link</a></li>
             {% endif %} -->
-            <div style="overflow-y: scroll;" style="background: black;color: white;">
+            <div style="color: black;font-weight: bolder;">
                 {{ post.body }}
             </div>
         </div>
+        <div class="col-lg-2"></div>
     </div>
     {% empty %}
     <li>No posts yet.</li>

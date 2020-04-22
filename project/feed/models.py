@@ -12,3 +12,7 @@ class post(models.Model):
     body = models.TextField()
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     photo = models.ImageField(upload_to=POST_PHOTO_PATH,blank=True,default=DEFAULT_POST_PHOTO)
+
+
+    def __str__(self):
+        return self.title
