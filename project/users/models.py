@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.shortcuts import reverse
 from projects.models import projects
 
 import os 
@@ -54,11 +54,13 @@ class user(AbstractUser):
     REQUIRED_FIELDS = ['first_name','last_name','email','year','department','cgpa','github_link','linkedin_link','resume_link','transcript_link','areas_of_interest']
 
     def __str__(self):
-        return self.get_full_name()+' - '+self.username
+        return self.get_full_name()
 
     def get_areas_of_interest(self):
         return self.areas_of_interest.split(",")
 
+    def get_absolute_url(self):
+        return reverse('users:profile',kwargs={"id":self.id})
 
 class professor(models.Model):
     name = models.CharField(max_length=200,help_text='Enter your full name')

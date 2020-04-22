@@ -12,7 +12,7 @@
             <img style="height: 100px; width: 100px;" src="{{ post.author.photo.url }}" alt="">
             <h2 style="display: inline;">{{ post.title }}</h2> <br>
             <img style="height: 200px; width: 200px;float: left;" src="{{ post.photo.url }}" alt="">
-            <li><b>Posted by : </b>{{ post.author }}</li>
+            <li><b>Posted by : </b><a target="_blank" href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></li>
             <!-- <li><b>Domain(s) :</b> {% for domain in post.domains_list %}
                 <span class="label label-success">{{ domain }}</span> {% endfor %}
             </li> -->
@@ -20,7 +20,7 @@
             <li><a target="_blank" href="{{ post.link }}">Link</a></li>
             {% endif %} -->
             <div style="color: black;font-weight: bolder;">
-                {{ post.body }}
+                {{ post.body | urlizetrunc:30 }}
             </div>
         </div>
         <div class="col-lg-2"></div>
