@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'stats',
     'help',
     'feed',
+    'taggit',
 ]
 
 MIDDLEWARE = [

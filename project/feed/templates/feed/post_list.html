@@ -4,24 +4,22 @@
 <h1 style="display: inline-block;"><b>Recent activity</b></h1>
 <button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'feed:create-post'%}"><span class="glyphicon glyphicon-plus"></span> NEW POST</a></button>
 <ul>
-
+    <p>Common Tags: {% for mt in common_tags %}
+        <a style="font-size: 20px;" href="#" class="badge badge-success">{{mt}}</a> {% endfor %}
+    </p>
     {% for post in object_list %}
     <div class="row">
         <div class="col-lg-2"></div>
         <div style="overflow-y: scroll;height:300px;list-style: none;text-align: center;margin: 0px;border: 5px solid black;border-radius: 10px;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 card">
             <img style="height: 100px; width: 100px;" src="{{ post.author.photo.url }}" alt="">
-            <h2 style="display: inline;">{{ post.title }}</h2> <br>
-            <img style="height: 200px; width: 200px;float: left;" src="{{ post.photo.url }}" alt="">
+            <h2 style="display: inline;"><b>{{ post.title }}</b></h2> <br>
+            <img style="height: 150px; width: 150px;float: left;margin: 10px;" src="{{ post.photo.url }}" alt="">
             <li><b>Posted by : </b><a target="_blank" href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></li>
-            <!-- <li><b>Domain(s) :</b> {% for domain in post.domains_list %}
-                <span class="label label-success">{{ domain }}</span> {% endfor %}
-            </li> -->
-            <!-- {% if post.link %}
-            <li><a target="_blank" href="{{ post.link }}">Link</a></li>
-            {% endif %} -->
             <div style="color: black;font-weight: bolder;">
                 {{ post.body | urlizetrunc:30 }}
             </div>
+            {% for tag in post.tags.all %}
+            <a style="font-size: 20px;" href="{% url 'feed:tagged' tag.slug %}" class="mr-1 badge badge-success">{{ tag }}</a> {% endfor %}
         </div>
         <div class="col-lg-2"></div>
     </div>
