@@ -1,18 +1,32 @@
 from django import forms
 
-from .models import user,professor
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 
-class UserForm(forms.ModelForm):
+from .models import Student,Professor
+
+class StudentCreationForm(UserCreationForm):
+
     class Meta:
-        model = user
-        fields = ('username','password','first_name','last_name','email','year','department','cgpa','github_link','linkedin_link','resume_link','transcript_link','areas_of_interest')
-
-    def __init__(self, *args, **kwargs):
-        super(UserForm, self).__init__(*args, **kwargs)
-        self.fields['username'].help_text = 'Enter your roll no.'
+        model = Student
+        fields = ('username','email','first_name','last_name','email','year','department','cgpa','github_link','linkedin_link','resume_link','transcript_link','areas_of_interest')
 
 
-class ProfForm(forms.ModelForm):
+class StudentChangeForm(UserChangeForm):
+
     class Meta:
-        model = professor
-        fields = ('name','department','email','password','research_areas','google_scholar')
+        model = Student
+        fields = ('username','email','first_name','last_name','email','year','department','cgpa','github_link','linkedin_link','resume_link','transcript_link','areas_of_interest')
+
+
+class ProfessorCreationForm(UserCreationForm):
+
+    class Meta:
+        model = Professor
+        fields = ('username','email','first_name','last_name','department','research_areas')
+
+
+class ProfessorChangeForm(UserChangeForm):
+
+    class Meta:
+        model = Professor
+        fields = ('username','email','first_name','last_name','department','research_areas')

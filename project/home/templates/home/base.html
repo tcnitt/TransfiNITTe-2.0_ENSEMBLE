@@ -41,10 +41,10 @@
             <li><a href="{% url 'faq:list-faqs' %}">FAQ</a></li>
             <div style="display: inline;">
                 {% if user.is_authenticated %}
-                <button class="btn btn-info"><a href="{% url 'users:profile' id=user.id %}">PROFILE</a></button>
+                <button class="btn btn-info"><a {% if user.is_student %} href="{% url 'users:student-profile' username=user.username %}" {% else %} href="{% url 'users:prof-profile' username=user.username %}" {% endif %}>PROFILE</a></button>
                 <button class="btn btn-info"><a href="{% url 'logout' %}">LOGOUT</a></button> {% else %}
-                <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button>
-                <button class="btn btn-info"><a href="{% url 'users:register-user' %}">REGISTER</a></button> {% endif %}
+                {% comment %} <button class="btn btn-info"><a href="{% url 'login' %}">LOGIN</a></button> {% endcomment %}
+                <button class="btn btn-info"><a href="{% url 'users:auth' %}">GET STARTED</a></button> {% endif %}
             </div>
             <!-- <li><a href="/research/">Research</a></li> -->
         </ul>

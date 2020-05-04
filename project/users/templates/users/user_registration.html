@@ -18,7 +18,7 @@
     </div>
     {% endfor %}
 {% endif %}
-<form style="width: 600px;text-align: left;" action="{% url 'users:register-user' %}" method="post">
+<form style="width: 600px;text-align: left;" action="{% url 'users:auth' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit">

@@ -45,7 +45,11 @@ INSTALLED_APPS = [
     'help',
     'feed',
     'taggit',
+    'debug_toolbar',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +59,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -135,4 +144,4 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'home:home-page'
 LOGOUT_REDIRECT_URL = 'home:home-page'
 
-AUTH_USER_MODEL = 'users.user'
+AUTH_USER_MODEL = 'users.Users'

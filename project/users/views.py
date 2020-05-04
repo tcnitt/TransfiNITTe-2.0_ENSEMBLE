@@ -1,44 +1,111 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .forms import UserForm,ProfForm
-from .models import user,professor
+from django.contrib.auth import authenticate,login,logout
+
+from django.contrib.auth.forms import AuthenticationForm
+
+from .forms import (
+    StudentCreationForm,StudentChangeForm,
+    ProfessorCreationForm,ProfessorChangeForm,
+)
+from .models import Users,Student,Professor
 from django.contrib.auth.hashers import make_password
-# Create your views here.
-def RegisterUserView(request):
+
+def StudentLogin(request):
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            data = form.save(commit=False)
-            data.password = make_password(form.cleaned_data["password"])
-            data.save()
-            return redirect('home:home-page')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user,backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('/')
+        else:
+            form = AuthenticationForm(request.POST)
+            return render(request, 'users/student_login.html', {'form': form})
     else:
-        form = UserForm()
-    return render(request,'users/user_registration.html',{'form':form})
+        form = AuthenticationForm()
+        return render(request, 'users/student_login.html', {'form': form})
+    pass 
 
 
-def UserProfileView(request,id):
-    user_profile = get_object_or_404(user,id=id)
-    context = {'user':user_profile}
-    return render(request,'users/profile.html',context)
 
-def ProfRegisterView(request):
+def StudentSignup(request):
+    if request.user.is_authenticated:
+        return redirect('/')
     if request.method == 'POST':
-        form = ProfForm(request.POST)
+        form = StudentCreationForm(request.POST)
         if form.is_valid():
-            data = form.save(commit=False)
-            data.password = make_password(form.cleaned_data["password"])
-            data.save()
-            return redirect('home:home-page')
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user,backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('/')
+        else:
+            return render(request, 'users/student_signup.html', {'form': form})
     else:
-        form = ProfForm()
-    return render(request,'users/prof_registration.html',{'form':form})
-
-
-
-def ProfLoginView(request):
+        form = StudentCreationForm()
+        return render(request, 'users/student_signup.html', {'form': form})
     pass
 
-def ProfProfileView(request):
-    user_profile = get_object_or_404(professor,id=1)
-    context = {'user':user_profile}
+
+def ProfLogin(request):
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user,backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('/')
+        else:
+            form = AuthenticationForm(request.POST)
+            return render(request, 'users/prof_login.html', {'form': form})
+    else:
+        form = AuthenticationForm()
+        return render(request, 'users/prof_login.html', {'form': form})
+    pass 
+
+
+
+def ProfSignup(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    if request.method == 'POST':
+        form = ProfessorCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user,backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('/')
+        else:
+            return render(request, 'users/prof_signup.html', {'form': form})
+    else:
+        form = ProfessorCreationForm()
+        return render(request, 'users/prof_signup.html', {'form': form})
+    pass
+
+
+def StudentProfileView(request,username):
+
+    user = get_object_or_404(Student,username=username)
+
+    context = {
+        'user' : user
+    }
+    
+    return render(request,'users/student_profile.html',context)
+
+def ProfProfileView(request,username):
+
+    user = get_object_or_404(Professor,username=username)
+
+    context = {
+        'user' : user
+    }
+    
     return render(request,'users/prof_profile.html',context)

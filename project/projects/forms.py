@@ -1,8 +1,8 @@
 from django import forms
 
-from .models import projects
+from .models import Projects
 
 class ProjectForm(forms.ModelForm):
     class Meta:
-        model = projects
+        model = Projects
         fields = '__all__'

@@ -13,6 +13,5 @@ class help(models.Model):
     link = models.URLField(max_length=200,help_text='Link to article')
     author = models.CharField(max_length=200,help_text='Name of author')
 
-
     def __str__(self):
         return self.title

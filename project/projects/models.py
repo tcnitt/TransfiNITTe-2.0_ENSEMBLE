@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Create your models here.
 
 BODIES = (
@@ -25,12 +24,12 @@ BODIES = (
 DEFAULT_BODY = 'CSE'
 
 PROJECT_STATUS = (
-    ('1','Not yet started'),
-    ('2','In progress'),
-    ('3','Completed'),
+    (1,'Not yet started'),
+    (2,'In progress'),
+    (3,'Completed'),
 )
 
-DEFAULT_PROJECT_STATUS = '1'
+DEFAULT_PROJECT_STATUS = 1
 
 DEGREE_CHOICES = (
     ('B.Tech','B.Tech'),
@@ -42,17 +41,17 @@ DEGREE_CHOICES = (
 DEFAULT_DEGREE = 'All'
 
 PROJECT_DURATION = (
-    ('1','1 month'),
-    ('2','2 months'),
-    ('3','3 months'),
-    ('4','5 months'),
-    ('6','6 months'),
-    ('7','>6 months'),
+    (1,'1 month'),
+    (2,'2 months'),
+    (3,'3 months'),
+    (4,'5 months'),
+    (6,'6 months'),
+    (7,'>6 months'),
 )
 
-DEFAULT_PROJECT_DURATION = '6'
+DEFAULT_PROJECT_DURATION = 6
 
-class projects(models.Model):
+class Projects(models.Model):
     title = models.CharField(max_length=300)
     description = models.TextField()
     domain = models.CharField(max_length=300,help_text='Enter domains as comma separated values')
@@ -61,11 +60,12 @@ class projects(models.Model):
     email = models.EmailField()
     prerequisites = models.TextField(help_text='Enter pre-requisites as comma separated values')
     body = models.CharField(choices=BODIES,max_length=100,default=DEFAULT_BODY)
-    status = models.CharField(max_length=50,choices=PROJECT_STATUS,default=DEFAULT_PROJECT_STATUS)
+    status = models.IntegerField(choices=PROJECT_STATUS,default=DEFAULT_PROJECT_STATUS)
     degree = models.CharField(max_length=20,choices=DEGREE_CHOICES,default=DEFAULT_DEGREE)
-    duration = models.CharField(max_length=20,choices=PROJECT_DURATION,default=DEFAULT_PROJECT_DURATION)
+    duration = models.IntegerField(choices=PROJECT_DURATION,default=DEFAULT_PROJECT_DURATION)
     link = models.URLField(max_length=200,blank=True,help_text='Links if any')
     required = models.PositiveSmallIntegerField(default=1,help_text='No. of people required')
+    
     class Meta:
         verbose_name = 'Projects'
         verbose_name_plural = 'Projects'

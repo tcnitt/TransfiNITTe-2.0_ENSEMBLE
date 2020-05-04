@@ -2,12 +2,12 @@ from django.shortcuts import render,redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
-from .models import projects
-from users.models import user 
+from .models import Projects
+from users.models import Student,Professor
 from .forms import ProjectForm
 
 class ListProjectsView(ListView):
-    model = projects
+    model = Projects
     paginate_by = 10
 
 
@@ -24,12 +24,12 @@ def AddNewProjectView(request):
 
 
 class SearchResultsView(ListView):
-    model = projects
+    model = Projects
     template_name = 'projects/projects_list.html'
 
     def get_queryset(self): # new
         query = self.request.GET.get('q')
-        return projects.objects.filter(
+        return Projects.objects.filter(
             Q(title__icontains=query) | 
             Q(domain__icontains=query) |
             Q(body__icontains=query) | 
@@ -38,12 +38,12 @@ class SearchResultsView(ListView):
             )
 
 class CandidateRecommendationView(ListView):
-    model = projects
+    model = Projects
     template_name = 'projects/candidates.html'
 
     def get_queryset(self): # new
         query = self.request.GET.get('q') or ''
-        return user.objects.filter(
+        return Students.objects.filter(
             Q(areas_of_interest__icontains=query) | 
             Q(bio__icontains=query) |
             Q(department__icontains=query) | 
