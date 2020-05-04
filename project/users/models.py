@@ -85,7 +85,7 @@ class Student(Users):
         return self.areas_of_interest.split(",")
 
     def get_absolute_url(self):
-        return reverse('users:profile',kwargs={"id":self.id})
+        return reverse('users:student-profile',kwargs={"username":self.username})
 
 
     class Meta:
@@ -109,7 +109,10 @@ class Professor(Users):
     def save(self, *args, **kwargs): 
         self.is_student = False
         super(Professor, self).save(*args, **kwargs) 
-        
+
+    def get_absolute_url(self):
+        return reverse('users:prof-profile',kwargs={"username":self.username})
+
     class Meta:
         verbose_name = "Professor"
         verbose_name_plural = "Professors"

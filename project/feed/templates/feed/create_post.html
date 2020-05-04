@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %} {% block content %}
 <h1><b>Create new post</b></h1>
 
-<form class="form" style="width: 500px;text-align: left;background-color:aliceblue;" action="{% url 'feed:create-post' %}" method="post">
+<form class="form" style="width: 500px;text-align: left;" action="{% url 'feed:create-post' %}" method="post">
     {% csrf_token %} {{ form.as_p }}
     <input type="submit" value="Submit">
 </form>

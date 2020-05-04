@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 import os 
 from taggit.managers import TaggableManager
+from users.models import Student
 from datetime import datetime
 # Create your models here.
 
@@ -12,7 +13,7 @@ DEFAULT_POST_PHOTO = os.path.join('post_photos/default.jpg')
 class post(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
-    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    author = models.ForeignKey(Student,on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='post_photos/%d/%m/%Y',blank=True,default=DEFAULT_POST_PHOTO)
     tags = TaggableManager()
     created = models.DateTimeField(auto_now=True)

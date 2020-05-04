@@ -5,7 +5,7 @@
 
 <br>
 {% if user.is_authenticated %}
-<button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'feed:create-post'%}"><span class="glyphicon glyphicon-plus"></span> NEW POST</a></button>
+<button class="btn btn-success p-5"><a style="color:white" href="{% url 'feed:create-post'%}"><span class="glyphicon glyphicon-plus"></span> NEW POST</a></button>
 {% else %}
 Kindly login to create a post.
 {% endif %}
@@ -20,7 +20,7 @@ Kindly login to create a post.
             <img style="height: 100px; width: 100px;" src="{{ post.author.photo.url }}" alt="">
             <h2 style="display: inline;"><b>{{ post.title }}</b></h2>
             <img style="height: 150px; width: 150px;float: left;margin: 10px;" src="{{ post.photo.url }}" alt="">
-            <li>{{ post.created }}<b style="padding-left: 30px;">Posted by : </b><a target="_blank" href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></li>
+            <li>{{ post.created }}<b style="padding-left: 30px;">Posted by : </b><a target="_blank" href="{{ post.author.get_absolute_url }}">{{ post.author.get_full_name }}</a></li>
             <div style="color: black;font-weight: bolder;">
                 {{ post.body | urlizetrunc:30 }}
             </div>
