@@ -2,7 +2,13 @@
 
 
 <h1 style="display: inline-block;"><b>Recent activity</b></h1>
+
+<br>
+{% if user.is_authenticated %}
 <button style="margin-left: 200px;" class="btn btn-success p-5"><a style="color:white" href="{% url 'feed:create-post'%}"><span class="glyphicon glyphicon-plus"></span> NEW POST</a></button>
+{% else %}
+Kindly login to create a post.
+{% endif %}
 <ul>
     <p>Common Tags: {% for mt in common_tags %}
         <a style="font-size: 20px;" href="#" class="badge badge-success">{{mt}}</a> {% endfor %}
